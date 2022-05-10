@@ -1,0 +1,36 @@
+---
+import '../styles/global.css'
+
+import Wrapper from '../astro/wrapper.astro'
+import Footer from '../astro/footer.astro'
+
+import Intro from '../components/Intro'
+import Colours from '../components/Colours'
+import Gradients from '../components/Gradients'
+import Typography from '../components/Typography'
+import InputBoxes from '../components/InputBoxes'
+import Buttons from '../components/Buttons'
+import Games from '../components/Games/Games'
+
+import { getBlacklist } from '../db/blacklist'
+import getIp from '../requests/getIp'
+
+const ip = await getIp()
+const isBlacklisted = await getBlacklist(ip)
+---
+
+<Wrapper
+  title="Harsh's UI Gallery"
+  description="Harsh Singh's user-interface gallery - an collection of colours, gradients, typography, UI components and some fun games to give you ideas and inspirations for building your own applications, UI libraries and design systems."
+>
+  <main class="w-95 xl:w-60 2xl:w-40">
+    <Intro client:load />
+    <Colours client:load />
+    <Gradients client:load />
+    <Typography client:load />
+    <InputBoxes client:load />
+    <Buttons client:load />
+    <Games isBlacklisted={isBlacklisted} client:load />
+  </main>
+  <Footer />
+</Wrapper>

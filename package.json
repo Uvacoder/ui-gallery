@@ -1,0 +1,35 @@
+{
+  "name": "@example/framework-react",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@astrojs/react": "^0.1.1",
+    "@astrojs/tailwind": "^0.2.1",
+    "astro": "^1.0.0-beta.20",
+    "prettier-plugin-astro": "0.1.0-next.4",
+    "prisma": "^3.13.0",
+    "ts-node": "^10.7.0"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^0.1.4",
+    "@prisma/client": "^3.13.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "axios": "^0.27.2",
+    "framer-motion": "^6.3.3",
+    "party-js": "^2.1.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-hot-toast": "^2.2.0",
+    "react-router-dom": "^6.3.0"
+  }
+}

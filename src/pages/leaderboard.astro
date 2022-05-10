@@ -1,0 +1,23 @@
+---
+import '../styles/global.css'
+
+import Wrapper from '../astro/wrapper.astro'
+import Footer from '../astro/footer.astro'
+
+import Intro from '../components/Leaderboard/Intro'
+import Tables from '../components/Leaderboard/Tables'
+
+import fetch from '../db/fetch'
+const rankings = await fetch('asc')
+---
+
+<Wrapper
+  title="Harsh's UI Gallery"
+  description="Harsh Singh's user-interface gallery - an collection of colours, gradients, typography, UI components and some fun games to give you ideas and inspirations for building your own applications, UI libraries and design systems."
+>
+  <main class="w-95 xl:w-60 2xl:w-40">
+      <Intro client:load />
+      <Tables rankings={rankings} client:load />
+  </main>
+  <Footer />
+</Wrapper>

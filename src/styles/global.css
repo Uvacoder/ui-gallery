@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+
+@font-face {
+  font-family: 'You tried to cheat?';
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+}
+
+body {
+  font-family: 'Sora', sans-serif;
+  @apply bg-white relative overflow-x-hidden;
+}
+
+h1 {
+  @apply font-bold;
+}
+
+::selection {
+  @apply bg-turqoise-700 text-white;
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-body-light;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-sky-500;
+}
+
+button {
+  @apply select-none;
+}
+
+::placeholder {
+  @apply select-none;
+}
+
+input[type='range'] {
+  @apply appearance-none w-full h-2 outline-none bg-gray-200 rounded-xl;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  @apply appearance-none w-8 h-8 rounded-full cursor-pointer bg-sky-500 transition-all shadow-2xl;
+}
+
+input[type='range'].disabled::-webkit-slider-thumb {
+  @apply cursor-not-allowed;
+}
+
+input[type='range']:not(.disabled)::-webkit-slider-thumb:hover {
+  @apply scale-125;
+}
+
+.disabled {
+  @apply cursor-not-allowed;
+}
+
+.guess-font {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+td,
+th {
+  @apply py-5 text-center;
+}

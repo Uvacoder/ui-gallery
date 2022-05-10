@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  tries     Int
+  name      String
+}
+
+// Blacklist users from adding more entries
+model Blacklist {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  ip        String   @unique
+  createdAt DateTime @default(now())
+}
