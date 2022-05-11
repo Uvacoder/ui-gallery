@@ -14,7 +14,6 @@ model User {
   name      String
 }
 
-// Blacklist users from adding more entries
 model Blacklist {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   ip        String   @unique
