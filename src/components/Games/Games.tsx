@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Fade, FadeContainer, FadeLeft, FadeRight } from '../../utils/anims'
 import List from './../List'
 import Modal from './Modal'
-import { Blacklist } from '@prisma/client'
 import LineHeight from './LineHeight'
 import Padding from './Padding'
 import GuessFont from './GuessFont'
@@ -11,16 +10,7 @@ import FontWeight from './FontWeight'
 import LetterSpacing from './LetterSpacing'
 import ReactCanvasConfetti from 'react-canvas-confetti'
 
-const canvasStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0,
-}
-
-const Games: FC<{ isBlacklisted: Blacklist | null }> = ({ isBlacklisted }) => {
+const Games: FC<{ isBlacklisted: boolean }> = ({ isBlacklisted }) => {
   const [tries, setTries] = useState(0)
   const [completed, setCompleted] = useState(0)
   const [open, setOpen] = useState(false)
@@ -41,27 +31,9 @@ const Games: FC<{ isBlacklisted: Blacklist | null }> = ({ isBlacklisted }) => {
   }, [])
 
   const fire = useCallback(() => {
-    makeShot(0.25, {
-      spread: 26,
+    makeShot(1, {
+      spread: 90,
       startVelocity: 55,
-    })
-    makeShot(0.2, {
-      spread: 60,
-    })
-    makeShot(0.35, {
-      spread: 100,
-      decay: 0.91,
-      scalar: 0.8,
-    })
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 25,
-      decay: 0.92,
-      scalar: 1.2,
-    })
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 45,
     })
   }, [makeShot])
 
@@ -125,16 +97,14 @@ const Games: FC<{ isBlacklisted: Blacklist | null }> = ({ isBlacklisted }) => {
           <motion.button
             variants={Fade}
             className={`border-2 p-5 w-fit h-fit text-xl rounded-lg mt-10 mr-5 text-white transition-colors duration-200 ${
-              completed !== 5 || isBlacklisted !== null
+              completed !== 5 || isBlacklisted
                 ? 'border-gray-300 bg-gray-200 text-gray-400 cursor-not-allowed'
                 : 'border-sky-500 bg-sky-500 hover:text-sky-500 hover:bg-transparent active:bg-sky-500/20 cursor-pointer'
             }`}
             onClick={() => setOpen(true)}
-            disabled={completed === 5 && isBlacklisted === null ? false : true}
+            disabled={completed === 5 && isBlacklisted ? false : true}
           >
-            {isBlacklisted === null
-              ? 'Add to Leaderboard'
-              : 'Already on Leaderboard!'}
+            {isBlacklisted ? 'Add to Leaderboard' : 'Already on Leaderboard!'}
           </motion.button>
           <motion.a
             variants={FadeRight}
@@ -153,7 +123,6 @@ const Games: FC<{ isBlacklisted: Blacklist | null }> = ({ isBlacklisted }) => {
           {open && <Modal setOpen={setOpen} tries={tries} />}
         </AnimatePresence>
       </motion.div>
-      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </List>
   )
 }

@@ -1,14 +1,10 @@
 import { FC, ReactNode } from 'react'
-import colours from '../utils/colours'
 import { motion } from 'framer-motion'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 import {
   Fade,
-  FadeBottom,
   FadeContainer,
   FadeLeft,
-  FadeRight,
-  FastFadeContainer,
 } from '../utils/anims'
 
 const List: FC<{

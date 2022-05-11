@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { Dispatch, FC, ReactNode, SetStateAction, useRef } from 'react'
-import { BrowserRouter, useNavigate } from 'react-router-dom';
 import { Fade, FadeBottom, FadeContainer, FadeRight } from '../../utils/anims'
 
 const Backdrop: FC<{ children: ReactNode; onClick: () => void }> = ({
@@ -60,7 +59,6 @@ const Modal: FC<{
   }
 
   return (
-  <BrowserRouter>
     <Backdrop onClick={() => setOpen(false)}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
@@ -108,7 +106,6 @@ const Modal: FC<{
         </motion.div>
       </motion.div>
     </Backdrop>
-  </BrowserRouter>
   )
 }
 

@@ -50,10 +50,10 @@ const GuessFont: FC<{
         />
         <motion.button
           variants={Fade}
-          className={`border-2 mt-5 md:mt-0 md:ml-5 p-5 text-xl rounded-lg text-white transition-colors duration-200 ${
+          className={`border-2 mt-5 md:mt-0 md:ml-5 p-5 text-xl rounded-lg transition-colors duration-200 ${
             won
               ? 'border-gray-300 bg-gray-200 text-gray-300 cursor-not-allowed'
-              : 'border-sky-500 bg-sky-500 hover:text-sky-500 hover:bg-transparent active:bg-sky-500/20'
+              : 'border-sky-500 bg-sky-500 hover:text-sky-500 text-white hover:bg-transparent active:bg-sky-500/20'
           }`}
           disabled={won ? true : false}
           onClick={() => {

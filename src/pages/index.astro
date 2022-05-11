@@ -16,10 +16,7 @@ import { getBlacklist } from '../db/blacklist'
 import getIp from '../requests/getIp'
 
 const ip = await getIp()
-const isBlacklisted = await getBlacklist(ip)
-
-console.log(import.meta.env)
-console.log(process.env)
+const isBlacklisted = await getBlacklist(ip) !== null
 ---
 
 <Wrapper

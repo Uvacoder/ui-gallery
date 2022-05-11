@@ -19,7 +19,7 @@ h1 {
 }
 
 ::selection {
-  @apply bg-turqoise-700 text-white;
+  @apply bg-forest-300 text-white;
 }
 
 ::-webkit-scrollbar {
