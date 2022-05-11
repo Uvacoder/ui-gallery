@@ -16,13 +16,13 @@
   "devDependencies": {
     "@astrojs/react": "^0.1.1",
     "@astrojs/tailwind": "^0.2.1",
+    "@astrojs/vercel": "link:/home/harsh/Documents/GitHub/astro/packages/integrations/vercel",
     "astro": "^1.0.0-beta.20",
     "prettier-plugin-astro": "0.1.0-next.4",
     "prisma": "^3.13.0",
     "ts-node": "^10.7.0"
   },
   "dependencies": {
-    "@astrojs/vercel": "^0.1.4",
     "@prisma/client": "^3.13.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
