@@ -4,5 +4,6 @@ import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel'
 
 export default defineConfig({
-  integrations: [react(), tailwind(), vercel()],
+  adapter: vercel(),
+  integrations: [react(), tailwind()],
 })
