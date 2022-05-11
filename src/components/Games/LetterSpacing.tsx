@@ -1,14 +1,14 @@
 import { FC, Dispatch, SetStateAction, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Fade, FadeBottom, FadeContainer, FadeLeft } from '../../utils/anims'
-import party from 'party-js'
 
 const LetterSpacing: FC<{
   completed: number
   setCompleted: Dispatch<SetStateAction<number>>
   tries: number
   setTries: Dispatch<SetStateAction<number>>
-}> = ({ completed, setCompleted, tries, setTries }) => {
+  fire: () => void
+}> = ({ completed, setCompleted, tries, setTries, fire }) => {
   const [letterSpacing, setLetterSpacing] = useState(8)
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
@@ -57,9 +57,7 @@ const LetterSpacing: FC<{
             setTimeout(() => setReplay(true), 100)
             setWon(true)
             setCompleted(completed + 1)
-            party.confetti(slider.current, {
-              count: party.variation.range(40, 60),
-            })
+            fire()
           }
         }}
       />

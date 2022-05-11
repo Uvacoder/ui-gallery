@@ -1,14 +1,14 @@
 import { FC, Dispatch, SetStateAction, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Fade, FadeContainer, FadeRight } from '../../utils/anims'
-import party from 'party-js'
 
 const Padding: FC<{
   completed: number
   setCompleted: Dispatch<SetStateAction<number>>
   tries: number
   setTries: Dispatch<SetStateAction<number>>
-}> = ({ completed, setCompleted, tries, setTries }) => {
+  fire: () => void
+}> = ({ completed, setCompleted, tries, setTries, fire }) => {
   const [padding, setPadding] = useState(25)
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
@@ -57,9 +57,7 @@ const Padding: FC<{
             setTimeout(() => setReplay(true), 100)
             setWon(true)
             setCompleted(completed + 1)
-            party.confetti(slider.current, {
-              count: party.variation.range(40, 60),
-            })
+            fire()
           }
         }}
       />

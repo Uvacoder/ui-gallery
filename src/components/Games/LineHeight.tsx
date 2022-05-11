@@ -1,14 +1,14 @@
 import { FC, Dispatch, SetStateAction, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Fade, FadeContainer, FadeLeft, FadeRight } from '../../utils/anims'
-import party from 'party-js'
 
 const LineHeight: FC<{
   completed: number
   setCompleted: Dispatch<SetStateAction<number>>
   tries: number
   setTries: Dispatch<SetStateAction<number>>
-}> = ({ completed, setCompleted, tries, setTries }) => {
+  fire: () => void
+}> = ({ completed, setCompleted, tries, setTries, fire }) => {
   const [lineHeight, setLineHeight] = useState(1)
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
@@ -62,9 +62,7 @@ const LineHeight: FC<{
             setTimeout(() => setReplay(true), 100)
             setWon(true)
             setCompleted(completed + 1)
-            party.confetti(slider.current, {
-              count: party.variation.range(40, 60),
-            })
+            fire()
           }
         }}
       />

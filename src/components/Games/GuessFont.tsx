@@ -1,7 +1,6 @@
 import { FC, Dispatch, SetStateAction, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Fade, FadeContainer, FadeRight } from '../../utils/anims'
-import party from 'party-js'
 import toast from 'react-hot-toast'
 
 const GuessFont: FC<{
@@ -9,7 +8,8 @@ const GuessFont: FC<{
   setCompleted: Dispatch<SetStateAction<number>>
   tries: number
   setTries: Dispatch<SetStateAction<number>>
-}> = ({ completed, setCompleted, tries, setTries }) => {
+  fire: () => void
+}> = ({ completed, setCompleted, tries, setTries, fire }) => {
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
   const input = useRef<HTMLInputElement>(null)
@@ -63,9 +63,7 @@ const GuessFont: FC<{
               setTimeout(() => setReplay(true), 100)
               setWon(true)
               setCompleted(completed + 1)
-              party.confetti(input.current, {
-                count: party.variation.range(40, 60),
-              })
+              fire()
             } else
               toast.error('Try again!', {
                 style: {

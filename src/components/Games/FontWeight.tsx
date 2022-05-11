@@ -1,14 +1,14 @@
 import { FC, Dispatch, SetStateAction, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Fade, FadeBottom, FadeContainer } from '../../utils/anims'
-import party from 'party-js'
 
 const FontWeight: FC<{
   completed: number
   setCompleted: Dispatch<SetStateAction<number>>
   tries: number
   setTries: Dispatch<SetStateAction<number>>
-}> = ({ completed, setCompleted, tries, setTries }) => {
+  fire: () => void
+}> = ({ completed, setCompleted, tries, setTries, fire }) => {
   const [fontWeight, setFontWeight] = useState(200)
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
@@ -57,9 +57,7 @@ const FontWeight: FC<{
             setReplay(!replay)
             setTimeout(() => setReplay(true), 100)
             setWon(true)
-            party.confetti(slider.current, {
-              count: party.variation.range(40, 60),
-            })
+            fire()
           }
         }}
       />
