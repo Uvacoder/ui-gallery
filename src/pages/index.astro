@@ -17,13 +17,16 @@ import getIp from '../requests/getIp'
 
 const ip = await getIp()
 const isBlacklisted = await getBlacklist(ip)
+
+console.log(import.meta.env)
+console.log(process.env)
 ---
 
 <Wrapper
   title="Harsh's UI Gallery"
   description="Harsh Singh's user-interface gallery - an collection of colours, gradients, typography, UI components and some fun games to give you ideas and inspirations for building your own applications, UI libraries and design systems."
 >
-  <main class="w-95 xl:w-60 2xl:w-40">
+  <main class='w-95 xl:w-60 2xl:w-40'>
     <Intro client:load />
     <Colours client:load />
     <Gradients client:load />

@@ -6,11 +6,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "vercel-build": "prisma generate && astro build",
     "preview": "astro preview"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma",
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/prisma/seed.ts"
   },
   "devDependencies": {
     "@astrojs/react": "^0.1.1",
