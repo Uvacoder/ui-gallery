@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "prisma": {
+    "schema": "src/prisma/schema.prisma",
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "devDependencies": {
