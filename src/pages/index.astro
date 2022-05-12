@@ -11,12 +11,6 @@ import Typography from '../components/Typography'
 import InputBoxes from '../components/InputBoxes'
 import Buttons from '../components/Buttons'
 import Games from '../components/Games/Games'
-
-import { getBlacklist } from '../db/blacklist'
-import getIp from '../requests/getIp'
-
-const ip = await getIp()
-const isBlacklisted = await getBlacklist(ip) !== null
 ---
 
 <Wrapper
@@ -30,7 +24,7 @@ const isBlacklisted = await getBlacklist(ip) !== null
     <Typography client:load />
     <InputBoxes client:load />
     <Buttons client:load />
-    <Games isBlacklisted={isBlacklisted} client:load />
+    <Games client:load />
   </main>
   <Footer />
 </Wrapper>

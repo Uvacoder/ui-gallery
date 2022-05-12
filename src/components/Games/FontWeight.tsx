@@ -13,6 +13,9 @@ const FontWeight: FC<{
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
   const slider = useRef<HTMLInputElement>(null)
+  const [goal, setGoal] = useState(
+    Math.round((Math.random() * 800 + 100) / 100) * 100 
+  )
 
   return (
     <motion.div
@@ -30,7 +33,7 @@ const FontWeight: FC<{
       >
         {won
           ? 'You are an eyeballing champion! 😻'
-          : 'Adjust the `font-weight` to 600'}
+          : `Adjust the \`font-weight\` to ${goal}`}
       </motion.h1>
       <motion.h1
         variants={FadeBottom}
@@ -44,20 +47,22 @@ const FontWeight: FC<{
         type='range'
         min='100'
         max='800'
-        defaultValue={fontWeight.toString()}
+        defaultValue={fontWeight}
         step='100'
         ref={slider}
         className={won ? 'disabled' : ''}
         disabled={won ? true : false}
         onChange={() => setFontWeight(parseInt(slider.current.value))}
         onPointerUp={() => {
-          setTries(tries + 1)
-          if (fontWeight === 600) {
-            setCompleted(completed + 1)
-            setReplay(!replay)
-            setTimeout(() => setReplay(true), 100)
-            setWon(true)
-            fire()
+          if (!won) {
+            setTries(tries + 1)
+            if (fontWeight === goal) {
+              setCompleted(completed + 1)
+              setReplay(!replay)
+              setTimeout(() => setReplay(true), 100)
+              setWon(true)
+              fire()
+            }
           }
         }}
       />

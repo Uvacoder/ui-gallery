@@ -1,41 +1,25 @@
-import { FC, useCallback, useRef, useState } from 'react'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Fade, FadeContainer, FadeLeft, FadeRight } from '../../utils/anims'
 import List from './../List'
 import Modal from './Modal'
 import LineHeight from './LineHeight'
 import Padding from './Padding'
-import GuessFont from './GuessFont'
 import FontWeight from './FontWeight'
+import BorderRadius from './BorderRadius'
 import LetterSpacing from './LetterSpacing'
-import ReactCanvasConfetti from 'react-canvas-confetti'
+import confetti from 'canvas-confetti'
 
-const Games: FC<{ isBlacklisted: boolean }> = ({ isBlacklisted }) => {
+const Games: FC = () => {
   const [tries, setTries] = useState(0)
   const [completed, setCompleted] = useState(0)
   const [open, setOpen] = useState(false)
 
-  const refAnimationInstance = useRef(null)
-
-  const getInstance = useCallback((instance) => {
-    refAnimationInstance.current = instance
-  }, [])
-
-  const makeShot = useCallback((particleRatio, opts) => {
-    refAnimationInstance.current &&
-      refAnimationInstance.current({
-        ...opts,
-        origin: { y: 0.7 },
-        particleCount: Math.floor(200 * particleRatio),
-      })
-  }, [])
-
-  const fire = useCallback(() => {
-    makeShot(1, {
-      spread: 90,
-      startVelocity: 55,
+  const fire = () =>
+    confetti({
+      particleCount: 150,
+      spread: 180,
     })
-  }, [makeShot])
 
   return (
     <List
@@ -57,14 +41,14 @@ const Games: FC<{ isBlacklisted: boolean }> = ({ isBlacklisted }) => {
         setTries={setTries}
         fire={fire}
       />
-      <GuessFont
+      <FontWeight
         completed={completed}
         setCompleted={setCompleted}
         tries={tries}
         setTries={setTries}
         fire={fire}
       />
-      <FontWeight
+      <BorderRadius
         completed={completed}
         setCompleted={setCompleted}
         tries={tries}
@@ -97,14 +81,14 @@ const Games: FC<{ isBlacklisted: boolean }> = ({ isBlacklisted }) => {
           <motion.button
             variants={Fade}
             className={`border-2 p-5 w-fit h-fit text-xl rounded-lg mt-10 mr-5 text-white transition-colors duration-200 ${
-              completed !== 5 || isBlacklisted
+              completed !== 5
                 ? 'border-gray-300 bg-gray-200 text-gray-400 cursor-not-allowed'
                 : 'border-sky-500 bg-sky-500 hover:text-sky-500 hover:bg-transparent active:bg-sky-500/20 cursor-pointer'
             }`}
             onClick={() => setOpen(true)}
-            disabled={completed === 5 && isBlacklisted ? false : true}
+            disabled={completed !== 5 ? true : false}
           >
-            {isBlacklisted ? 'Add to Leaderboard' : 'Already on Leaderboard!'}
+            Add to Leaderboard
           </motion.button>
           <motion.a
             variants={FadeRight}

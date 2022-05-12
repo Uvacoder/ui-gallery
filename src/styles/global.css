@@ -11,7 +11,7 @@
 
 body {
   font-family: 'Sora', sans-serif;
-  @apply bg-white relative overflow-x-hidden;
+  @apply bg-body-light relative overflow-x-hidden;
 }
 
 h1 {
@@ -47,7 +47,7 @@ input[type='range'] {
 }
 
 input[type='range']::-webkit-slider-thumb {
-  @apply appearance-none w-8 h-8 rounded-full cursor-pointer bg-sky-500 transition-all shadow-2xl;
+  @apply appearance-none w-8 h-8 rounded-full cursor-move bg-sky-500 transition-all shadow-2xl;
 }
 
 input[type='range'].disabled::-webkit-slider-thumb {

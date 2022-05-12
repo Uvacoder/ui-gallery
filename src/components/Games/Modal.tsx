@@ -46,18 +46,6 @@ const Modal: FC<{
 }> = ({ setOpen, tries }) => {
   const nameRef = useRef<HTMLInputElement>(null)
 
-  const addToLeaderboard = () => {
-    const options = {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: `{"name":"${nameRef.current.value}","tries":${tries}}`,
-    }
-
-    fetch('/api/leaderboard', options)
-      .then(() => window.location.href = "/leaderboard")
-      .catch((err) => console.error(err))
-  }
-
   return (
     <Backdrop onClick={() => setOpen(false)}>
       <motion.div
@@ -68,11 +56,30 @@ const Modal: FC<{
         exit='exit'
         className='w-5/6 md:w-1/3 h-96 bg-body-light rounded-xl flex flex-col items-center justify-center'
       >
-        <motion.div variants={FadeContainer} initial='hidden' animate='visible' className='flex flex-col items-center'>
+        <motion.form
+          variants={FadeContainer}
+          initial='hidden'
+          animate='visible'
+          className='flex flex-col items-center'
+          onSubmit={(e) => {
+            e.stopPropagation()
+
+            const options = {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: `{"name":"${nameRef.current.value}","tries":${tries}}`,
+            }
+
+            fetch('/api/leaderboard', options)
+              .then(() => (window.location.href = '/leaderboard'))
+              .catch((err) => console.error(err))
+          }}
+        >
           <motion.input
             placeholder='Display name...'
             className='p-7 w-5/6 h-fit text-2xl bg-body-light border-gray-200 border-2 rounded-lg outline-none transition-colors focus:border-sky-600 placeholder:text-gray-300'
             variants={FadeRight}
+            required
             ref={nameRef}
           />
           <motion.p
@@ -99,11 +106,10 @@ const Modal: FC<{
           <motion.button
             variants={Fade}
             className='mt-10 border-2 border-sky-500 p-5 text-xl rounded-lg bg-sky-500 text-white hover:bg-transparent hover:text-sky-500 active:bg-sky-500/20 transition-colors duration-200'
-            onClick={addToLeaderboard}
           >
             Submit
           </motion.button>
-        </motion.div>
+        </motion.form>
       </motion.div>
     </Backdrop>
   )

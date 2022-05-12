@@ -13,6 +13,9 @@ const LetterSpacing: FC<{
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
   const slider = useRef<HTMLInputElement>(null)
+  const [goal, setGoal] = useState(
+    Math.round((Math.random() * (8 - -3) + -3))
+  )
 
   return (
     <motion.div
@@ -30,7 +33,7 @@ const LetterSpacing: FC<{
       >
         {won
           ? "✨ You're truly something else!"
-          : 'Adjust the `letter-spacing` to original'}
+          : `Adjust the \`letter-spacing\` to ${goal}px`}
       </motion.h1>
       <motion.h1
         variants={FadeBottom}
@@ -51,15 +54,17 @@ const LetterSpacing: FC<{
         onChange={() => setLetterSpacing(parseFloat(slider.current.value))}
         disabled={won ? true : false}
         onPointerUp={() => {
-          setTries(tries + 1)
-          if (letterSpacing === 0) {
-            setReplay(!replay)
-            setTimeout(() => setReplay(true), 100)
-            setWon(true)
-            setCompleted(completed + 1)
-            fire()
+          if (!won) {
+            setTries(tries + 1)
+            if (letterSpacing === goal) {
+              setReplay(!replay)
+              setTimeout(() => setReplay(true), 100)
+              setWon(true)
+              setCompleted(completed + 1)
+              fire()
+            }
+          }}
           }
-        }}
       />
     </motion.div>
   )

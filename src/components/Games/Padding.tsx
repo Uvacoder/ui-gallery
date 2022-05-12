@@ -13,6 +13,9 @@ const Padding: FC<{
   const [won, setWon] = useState(false)
   const [replay, setReplay] = useState(true)
   const slider = useRef<HTMLInputElement>(null)
+  const [goal, setGoal] = useState(
+    Math.round(Math.random() * 30)
+  )
 
   return (
     <motion.div
@@ -28,7 +31,7 @@ const Padding: FC<{
         initial='hidden'
         animate={replay ? 'visible' : 'hidden'}
       >
-        {won ? "🤩 You're on a roll!" : 'Adjust the `padding` to 15px'}
+        {won ? "🤩 You're on a roll!" : `Adjust the \`padding\` to ${goal}px`}
       </motion.h1>
       <div className='flex items-center justify-center h-48'>
         <motion.button
@@ -51,13 +54,15 @@ const Padding: FC<{
         className={won ? 'disabled' : ''}
         disabled={won ? true : false}
         onPointerUp={() => {
-          setTries(tries + 1)
-          if (padding === 15) {
-            setReplay(!replay)
-            setTimeout(() => setReplay(true), 100)
-            setWon(true)
-            setCompleted(completed + 1)
-            fire()
+          if (!won) {
+            setTries(tries + 1)
+            if (padding === goal) {
+              setReplay(!replay)
+              setTimeout(() => setReplay(true), 100)
+              setWon(true)
+              setCompleted(completed + 1)
+              fire()
+            }
           }
         }}
       />

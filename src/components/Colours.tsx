@@ -7,6 +7,8 @@ import List from './List'
 
 const Swatch: FC<{ colour: string }> = ({ colour }) => {
   const Copy = () => {
+    navigator.clipboard.writeText(colour)
+
     toast.success('Copied', {
       style: {
         padding: '16px',

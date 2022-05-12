@@ -112,9 +112,13 @@
     is-wsl "^2.2.0"
     node-fetch "^3.2.3"
 
-"@astrojs/vercel@link:../astro/packages/integrations/vercel":
-  version "0.0.0"
-  uid ""
+"@astrojs/vercel@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@astrojs/vercel/-/vercel-0.2.0.tgz#9a3803dd31fefac0d11c96daa5f617c72bc8079f"
+  integrity sha512-5p3jFp72COQDat7Cq8yG3Pzx/VyqZ6Vnxog8upVTWghVr1sDoVpph/UNg6AL/5vUsSBUmO489isgpNRdkxtMZA==
+  dependencies:
+    "@astrojs/webapi" "^0.11.1"
+    "@vercel/nft" "^0.18.2"
 
 "@astrojs/webapi@^0.11.1":
   version "0.11.1"
@@ -1037,7 +1041,7 @@ caniuse-lite@^1.0.30001332, caniuse-lite@^1.0.30001335:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001338.tgz#b5dd7a7941a51a16480bdf6ff82bded1628eec0d"
   integrity sha512-1gLHWyfVoRDsHieO+CaeYe7jSo/MT7D7lhaXUiwwbuR5BwQxORs0f1tAwUSQr3YbxRXJvxHM/PA5FfPQRnsPeQ==
 
-canvas-confetti@1.5.1:
+canvas-confetti@1.5.1, canvas-confetti@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/canvas-confetti/-/canvas-confetti-1.5.1.tgz#bf5b8622ef3bcd347378a972fc4194a89cfe0c9b"
   integrity sha512-Ncz+oZJP6OvY7ti4E1slxVlyAV/3g7H7oQtcCDXgwGgARxPnwYY9PW5Oe+I8uvspYNtuHviAdgA0LfcKFWJfpg==
@@ -3870,11 +3874,6 @@ react-hot-toast@^2.2.0:
   integrity sha512-248rXw13uhf/6TNDVzagX+y7R8J183rp7MwUMNkcrBRyHj/jWOggfXTGlM8zAOuh701WyVW+eUaWG2LeSufX9g==
   dependencies:
     goober "^2.1.1"
-
-react-rewards@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-rewards/-/react-rewards-2.0.3.tgz#685aee98654ab4f060e297849f39cf0a16cec042"
-  integrity sha512-qww5Jtk2HmCjR9wc7+0c2iP8oCQzENZn8pnoJGi0S6o+6dAD25+ZoagLSWdoBLGVwxfP5kFBjv3VZ6L8fPk6lg==
 
 react@^18.0.0:
   version "18.1.0"
